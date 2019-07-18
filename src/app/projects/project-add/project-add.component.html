@@ -1,0 +1,78 @@
+<div class="right_col" style="min-height:700px" role="main">  
+    <form [formGroup]='projectForm' (ngSubmit)="saveProject()">
+    <div class="container">
+      <div class="row">        
+        <div class="col-xs-12">          
+            <!--addresses-->
+            <div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <span>{{pageTitle}}</span>                 
+                </div>
+                <div class="panel-body">                  
+                  <div class="form-group col-xs-6">
+                    <label>Project Name</label>
+                    <input type="text" class="form-control" 
+                           formControlName='name' 
+                           [ngClass]="{'is-invalid': displayMessage.pname }">   
+                           <span class="invalid-feedback">
+                              {{displayMessage.pname}}
+                            </span>                 
+                  </div>   
+                  <!-- <div class="form-group col-xs-4">
+                      <label>Lookup Type</label>
+                      <select class="form-control" (change)="changeLookup($event)"
+                           formControlName="lookupType">                         
+                          <option *ngFor="let lookup of LookupType" [value]="lookup.name">{{lookup.name}}</option>
+                       </select>                    
+                    </div>  -->
+                  <div class="form-group col-xs-6">
+                      <label>Project Description</label>
+                      <input type="textarea"  class="form-control" formControlName='description'>                      
+                    </div> 
+                    <!-- <div class="form-group col-xs-6">
+                          <button class="btn btn-outline-secondary btn-sm"
+                                  type="button"
+                                  title="Add a search tag"
+                                  (click)="addColumn()">Add Column
+                          </button>
+                    </div> -->
+                    <div class="form-group col-xs-1">
+                        <div class="form-check form-check-inline">
+                            <label>Active</label>
+                            <input type="checkbox" class="form-control" formControlName='active'>
+                        </div>
+                      </div> 
+                    <!-- <div formArrayName="columns">
+                        <div class="form-group col-xs-7"
+                             *ngFor="let column of columns.controls; let i=index">
+                          <label class="col-md-3 col-form-label"
+                                 [attr.for]="i">Column Name</label>
+                
+                          <div class="col-md-6">
+                            <input class="form-control"
+                                   [id]="i"
+                                   type="text"
+                                   placeholder="Column"
+                                   [formControlName]="i" />
+                          </div>
+                          <button class="col-md-2 btn btn-outline-warning btn-sm"
+                                  type="button"
+                                  title="Delete this search tag"
+                                  (click)="deleteColumn(i)">Delete
+                          </button>
+                        </div>                       
+                    </div> -->
+                </div>                
+              </div>            
+            </div>  
+            <div class="margin-20">              
+              <button type="button" class="btn btn pull-right" [routerLink]="['/projects']">Cancel</button>
+              <button type="submit" class="btn btn-primary pull-right" [disabled]="!projectForm.valid">Submit</button>
+            </div>
+            <div class="clearfix"></div> 
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
