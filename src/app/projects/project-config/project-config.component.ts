@@ -68,17 +68,17 @@ export class ProjectConfigComponent implements OnInit {
 
   onItemSelect(item:any){
     console.log(item);
-    this.selectedItems.push(item.itemName);
+    //this.selectedItems.push(item);
     }
   OnItemDeSelect(item:any){
     console.log(item);
-    this.selectedItems.push(item.itemName);
+    //this.selectedItems.push(item);
   }   
   onSelectAll(items: any){
-    this.selectedItems.push(items.itemName);
+    //this.selectedItems.push(items);
   }
   onDeSelectAll(items: any){
-    this.selectedItems.push(items.itemName);
+    //this.selectedItems.push(items);
   }
 
   getProjectDetails()  
@@ -120,7 +120,10 @@ export class ProjectConfigComponent implements OnInit {
       if (this.configForm.dirty) {
         const p = { ...this.config, ...this.configForm.value };        
           p.projects = this.checkBoxArray;
-          p.users = this.selectedItems;   
+          p.users = this.selectedItems; 
+          p.users = this.selectedItems.map(function(i) {
+                return i.itemName 
+              });   
           console.log(p);
           this.projectService.createProjectConfig(p)
             .subscribe(
