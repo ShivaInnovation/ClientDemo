@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeDirective } from 'ng2-fontawesome';
@@ -22,7 +21,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,    
-    FontAwesomeDirective      
+    FontAwesomeDirective         
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes), LayoutModule,  DashboardModule, UserModule, HttpClientModule, ProjectsModule],
   providers: [],

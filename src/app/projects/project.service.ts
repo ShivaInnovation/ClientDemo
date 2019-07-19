@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError, observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Project } from '../Models/project';
+import { Config } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class ProjectService {
       );
   }
 
+  getProjectsData() {
+    return this.http.get(this.projectUrl);
+  }
+
   getProject(id: number): Observable<Project> {
     if (id === 0) {
       return of(this.initializeProduct());
@@ -37,6 +42,16 @@ export class ProjectService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //project.id = null;    
      return this.http.post<Project>(this.projectUrl, project, { headers: headers })
+     .pipe(
+          tap(data => console.log('createProject: ' + JSON.stringify(data))),
+          catchError(this.handleError)
+       );
+  }
+
+  createProjectConfig(config: Config): Observable<Config> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //project.id = null;    
+     return this.http.post<Project>(this.projectUrl, config, { headers: headers })
      .pipe(
           tap(data => console.log('createProject: ' + JSON.stringify(data))),
           catchError(this.handleError)

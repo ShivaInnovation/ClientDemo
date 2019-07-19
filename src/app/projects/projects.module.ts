@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -10,6 +11,7 @@ import { ProjectConfigComponent } from './project-config/project-config.componen
 @NgModule({
   imports: [
     CommonModule,
+    AngularMultiSelectModule,
     ProjectsRoutingModule,
     ReactiveFormsModule    
   ],

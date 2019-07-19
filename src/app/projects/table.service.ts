@@ -8,8 +8,7 @@ import { Table } from '../Models/table';
   providedIn: 'root'
 })
 export class TableService {
-  private projectUrl = 'http://localhost:50136/api/tables';
-  private proUrl = 'http://localhost:50136/api/tables/GetTableNameById'
+  private projectUrl = 'http://localhost:50136/api/tables';  
   constructor(private http: HttpClient) { }
 
   getTables(): Observable<Table[]> {
@@ -20,6 +19,12 @@ export class TableService {
       );
   }
 
+  getTableData() {
+    return this.http.get(this.projectUrl);
+  }
+
+
+
   getTable(id: number): Observable<Table[]> {    
     const url = `${this.projectUrl}/${id}`;
     return this.http.get<Table[]>(url)
@@ -27,15 +32,11 @@ export class TableService {
         tap(data => console.log('getTable: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );    
-  }
+  } 
 
-  getTableById(id: number): Observable<Table[]> {    
-    const url = `${this.proUrl}/${id}`;
-    return this.http.get<Table[]>(url)
-      .pipe(
-        tap(data => console.log('getTable: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );    
+  getTableDataId(id: number) {
+    const url = `${this.projectUrl}/${id}`;
+    return this.http.get(url);
   }
 
   createTable(table: Table): Observable<Table> {
