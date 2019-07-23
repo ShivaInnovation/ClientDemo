@@ -1,0 +1,50 @@
+<div class="right_col" style="min-height:700px" role="main">
+  <div class="container">
+    <div class="row">        
+      <div class="col-xs-12">  
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span>{{pageTitle}}</span>                 
+              </div>
+              <div class="panel-body" >
+                  <div class="form-group col-xs-12" *ngIf="tables.length > 0">
+                      <div class="form-group col-xs-4">
+                          <table class="table table-hover">
+                              <thead>
+                                <tr> 
+                                  <th>SNo</th>                        
+                                  <th scope="col">Column Name</th>
+                                  <th scope="col">Data Type</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let column of tables[0]; let i = index">                       
+                                  <td>{{i+1}}</td>
+                                  <td>  
+                                      {{column.CoulmnName}}
+                                  </td> 
+                                  <td>  
+                                      {{column.Datatype}}
+                                  </td>    
+                                </tr>   
+                              </tbody>
+                          </table>
+                        </div>                          
+                      </div> 
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                          <button class="btn btn-outline-secondary mr-3"
+                                  style="width:80px"
+                                  (click)="onBack()">
+                            <i class="fa fa-chevron-left"></i> Back
+                          </button>                         
+                        </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

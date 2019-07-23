@@ -36,6 +36,7 @@ export class ProjectColumnComponent implements OnInit {
         this.projectId = id;
       }
     );
+    console.log(this.tables);
   }
 
   getProject(id: number): void {

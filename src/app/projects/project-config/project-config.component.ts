@@ -8,6 +8,7 @@ import { Config } from 'protractor';
 import { Table } from 'src/app/Models/table';
 import { filter, map, tap } from 'rxjs/operators';
 import { Observable, from, of } from 'rxjs';
+import { ConfigModel } from 'src/app/Models/config';
 
 @Component({
   selector: 'app-project-config',
@@ -17,7 +18,7 @@ import { Observable, from, of } from 'rxjs';
 export class ProjectConfigComponent implements OnInit {
   pageTitle = "Project-Configuration";
   public errorMessage: string;  
-  config: Config;
+  config: ConfigModel;
   private _allProjects: Project[];
   private _allTable: Table[];
   private filterData: any[] = [];
@@ -49,7 +50,7 @@ export class ProjectConfigComponent implements OnInit {
   ngOnInit() {
     this.configForm = this._fb.group({
       id: 0,
-      //projects:[[],[Validators.required]],    
+      projects:[[]],    
       users:[[],[Validators.required]]           
       });
 
@@ -104,14 +105,14 @@ export class ProjectConfigComponent implements OnInit {
   //   this.dropdownList = this.filteredUsers;  
   // }
   onChangeColumn(val, isChecked){
+    console.log(val);
     this.checkedInfo = isChecked; 
     if(isChecked.target.checked) {
-      this.checkBoxArray.push(val );
+      this.checkBoxArray.push(val);
     } else {
       let index = this.checkBoxArray.indexOf(val);
       this.checkBoxArray.splice(index, 1);
-    }    
-    console.log(this.checkBoxArray);
+    }  
   }
   
   saveProjectConfig(): void {
@@ -119,8 +120,7 @@ export class ProjectConfigComponent implements OnInit {
     if (this.configForm.valid) {
       if (this.configForm.dirty) {
         const p = { ...this.config, ...this.configForm.value };        
-          p.projects = this.checkBoxArray;
-          p.users = this.selectedItems; 
+          p.projects = this.checkBoxArray;        
           p.users = this.selectedItems.map(function(i) {
                 return i.itemName 
               });   
@@ -138,10 +138,10 @@ export class ProjectConfigComponent implements OnInit {
     }
   }
 
-  onSaveComplete(): void {
-    // Reset the form to clear the flags
-    //this.productForm.reset();
-    this.router.navigate(['/projects-table']);
+  onSaveComplete(): void {  
+    alert('Succefully configured project!')  
+    //this.configForm.reset();  
+    this.router.navigate(['/projects']);
   } 
   
 }

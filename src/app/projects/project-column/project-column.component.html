@@ -34,11 +34,13 @@
                             <tbody>
                               <tr *ngFor="let table of tables; let i = index">  
                                 <td>{{i + 1}}</td>                              
-                                <td>  
-                                    {{table.name}}
+                                <td>
+                                    <a [routerLink]="['/projects-detail',table.ProjectTableID]">
+                                      {{table.ProjectTableName}}
+                                    </a>                                     
                                 </td>  
                                 <td>  
-                                    {{table.tableType}}
+                                    {{table.TableType}}
                                 </td>                                 
                               </tr>   
                             </tbody>

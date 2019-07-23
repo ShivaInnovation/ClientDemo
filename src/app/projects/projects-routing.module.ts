@@ -6,6 +6,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectColumnComponent } from './project-column/project-column.component';
 import { ProjectTableComponent } from './project-table/project-table.component';
 import { ProjectConfigComponent } from './project-config/project-config.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,10 @@ const routes: Routes = [
       }, 
       {
         path:'projects-table/:id', component: ProjectColumnComponent
-      },   
+      },  
+      {
+        path:'projects-detail/:id', component: ProjectDetailComponent
+      },  
       {
         path:'projects/:id/edit',
         component: ProjectAddComponent

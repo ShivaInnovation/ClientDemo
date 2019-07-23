@@ -8,6 +8,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectColumnComponent } from './project-column/project-column.component';
 import { ProjectTableComponent } from './project-table/project-table.component';
 import { ProjectConfigComponent } from './project-config/project-config.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,6 @@ import { ProjectConfigComponent } from './project-config/project-config.componen
     ProjectsRoutingModule,
     ReactiveFormsModule    
   ],
-  declarations: [ProjectAddComponent, ProjectListComponent, ProjectColumnComponent, ProjectTableComponent, ProjectConfigComponent]
+  declarations: [ProjectAddComponent, ProjectListComponent, ProjectColumnComponent, ProjectTableComponent, ProjectConfigComponent, ProjectDetailComponent]
 })
 export class ProjectsModule { }

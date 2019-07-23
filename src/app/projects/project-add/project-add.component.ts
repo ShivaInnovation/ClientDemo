@@ -36,7 +36,9 @@ export class ProjectAddComponent implements OnInit {
         id: 0,
         name: ['', [Validators.required, Validators.minLength(5)]],
         description:[''],
-        active:['', [Validators.required]]      
+        active:['', [Validators.required]],
+        modifiedBy:[''],
+        modifiedDate: ['']
     });
 
      // Read the project Id from the route parameter
@@ -77,11 +79,9 @@ displayProject(project: Project): void {
     name: this.project.name,
     description: this.project.description,
     active: this.project.active,
-    //lookupType: this.project.lookupType
-  });
-  //this.project.columns = this.project.columnNames.split(",");
-  //this.projectForm.setControl['active'].setValue(this.active);
-  //this.projectForm.setControl('columns', this._fb.array(this.project.columns || []));
+    modifiedBy: this.project.modifiedBy,
+    modifiedDate: this.project.modifiedDate    
+  }); 
 }
 
 changeLookup(e) {

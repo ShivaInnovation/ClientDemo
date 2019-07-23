@@ -26,51 +26,32 @@
                                   (click)="addColumn()">Add Column
                           </button>
                     </div>
-                    <!-- <div formArrayName="columns" >
-                    <div>
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>                      
-                            <th scope="col">SNo</th>    
-                            <th scope="col">Column Name</th>                            
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let column of columns.controls; let i=index">                       
-                              <td> 
-                                  {{i+1}}
-                              </td>
-                            <td> 
-                                {{column}}
-                            </td>
-                            <td> 
-                                <button type="button" class="btn btn pull-right">Delete</button>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-
-                    </div>
-                    </div> -->
                     <div formArrayName="columns">
-                        <div class="form-group col-xs-7"
-                             *ngFor="let column of columns.controls; let i=index">
-                          <label class="col-md-3 col-form-label"
-                                 [attr.for]="i">Column Name</label>
-                
-                          <div class="col-md-6">
-                            <input class="form-control"
-                                   [id]="i"
+                        <div class="form-group col-xs-12"
+                        *ngFor="let cols of tableForm.get('columns').controls; let i = index"> 
+                        <div [formGroupName]="i">                       
+                             <div class="form-group col-xs-4">
+                              <label>Column Name</label>
+                              <input class="form-control"
+                                   id="columnName"
                                    type="text"
                                    placeholder="Column"
-                                   [formControlName]="i" />
-                          </div>
+                                   formControlName="columnName" />                                           
+                            </div>   
+                            <div class="form-group col-xs-4">
+                                <label>Data Type</label>
+                                <input class="form-control"
+                                id="dataType"
+                                type="text"
+                                placeholder="Data Type"
+                                formControlName="dataType" />
+                            </div>                           
                           <button class="col-md-2 btn btn-outline-warning btn-sm"
                                   type="button"
                                   title="Delete this search tag"
                                   (click)="deleteColumn(i)">Delete
                           </button>
+                      </div>
                         </div>                       
                     </div>      
                 </div>                

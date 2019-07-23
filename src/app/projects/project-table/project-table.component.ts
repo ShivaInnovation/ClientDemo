@@ -61,25 +61,30 @@ export class ProjectTableComponent implements OnInit {
     return this.tableForm.get('tableType');
   }
 
-  addColumn(): void {
-   this.columns.push(new FormControl());  
-    //console.log((this.tableForm.controls['columns'] as FormArray).push(this.createItem()))
+  addColumn(): void {   
+    let cols =  this.tableForm.get('columns') as FormArray; 
+    this.columns.push(this._fb.group({
+      columnName: '',
+      dataType: 'varchar(500)',
+    }));
   }
   
   deleteColumn(index: number): void {
-    this.columns.removeAt(index);
-    this.columns.markAsDirty();
+    const columns = this.tableForm.controls.columns as FormArray;
+    columns.removeAt(index);
+    columns.markAsDirty();
   }
 
   saveTable(): void {
     if (this.tableForm.valid) {
       if (this.tableForm.dirty) {
         const p = { ...this.table, ...this.tableForm.value }; 
-        p.projectId = this.projectId;       
+        p.projectId = this.projectId;
+        console.log(p);       
           this.tableService.createTable(p)
             .subscribe(
               () => this.onSaveComplete(),
-               error => this.errorMessage = error
+               error => this.errorMessage = error              
             );           
        } else {
         this.onSaveComplete();
@@ -92,7 +97,7 @@ export class ProjectTableComponent implements OnInit {
   onSaveComplete(): void {
     // Reset the form to clear the flags
     //this.productForm.reset();
-
+    alert('Table added successfully');
     this.router.navigate(['/projects-table', this.projectId]);
   }  
 

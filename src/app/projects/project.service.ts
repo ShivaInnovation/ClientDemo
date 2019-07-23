@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError, observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Project } from '../Models/project';
-import { Config } from 'protractor';
+import { ConfigModel } from '../Models/config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ import { Config } from 'protractor';
 export class ProjectService {
   formData: Project; 
   private projectUrl = 'http://localhost:50136/api/projects'
+  private projectConfigUrl = 'http://localhost:50136/api/ProjectConfigs'
+  configModel: ConfigModel
 
   constructor(private http: HttpClient) { }
 
@@ -38,9 +40,14 @@ export class ProjectService {
       );
   }
 
+  getTableColumn(id: number)
+  {
+    const url = `${this.projectUrl}/${id}`;
+    return this.http.get(url);
+  }
+
   createProject(project: Project): Observable<Project> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //project.id = null;    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    
      return this.http.post<Project>(this.projectUrl, project, { headers: headers })
      .pipe(
           tap(data => console.log('createProject: ' + JSON.stringify(data))),
@@ -48,10 +55,9 @@ export class ProjectService {
        );
   }
 
-  createProjectConfig(config: Config): Observable<Config> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //project.id = null;    
-     return this.http.post<Project>(this.projectUrl, config, { headers: headers })
+  createProjectConfig(configModel: ConfigModel): Observable<ConfigModel> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });   
+     return this.http.post<ConfigModel>(this.projectConfigUrl, configModel, { headers: headers })
      .pipe(
           tap(data => console.log('createProject: ' + JSON.stringify(data))),
           catchError(this.handleError)
@@ -84,7 +90,9 @@ export class ProjectService {
       id: 0,
       name: null,
       description: null,     
-      active: null      
+      active: null,
+      modifiedBy: null,
+      modifiedDate: ''     
     };
   }
 }

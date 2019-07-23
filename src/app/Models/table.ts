@@ -2,6 +2,6 @@ export class Table {
     id: number;   
     name: string;
     tableType: string;
-    columns?: string[];
+    columns?: any[];
     projectId: number;
 }

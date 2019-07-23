@@ -3,7 +3,6 @@ export class Project {
     name: string;
     description: string;
     active: string;
-    ///lookupType: string;
-    //columns?: string[];
-    //columnNames: string;
+    modifiedBy: string;
+    modifiedDate: string;    
 }

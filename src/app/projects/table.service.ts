@@ -23,8 +23,6 @@ export class TableService {
     return this.http.get(this.projectUrl);
   }
 
-
-
   getTable(id: number): Observable<Table[]> {    
     const url = `${this.projectUrl}/${id}`;
     return this.http.get<Table[]>(url)
