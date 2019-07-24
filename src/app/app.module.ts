@@ -10,6 +10,7 @@ import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
 import { ProjectsModule } from './projects/projects.module';
+import { ErrorInterceptorProvider } from './error.interceptor';
 
 
 const routes: Routes = [

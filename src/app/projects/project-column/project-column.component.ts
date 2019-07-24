@@ -31,7 +31,7 @@ export class ProjectColumnComponent implements OnInit {
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
-        this.getProject(id);
+        //this.getProject(id);
         this.getTable(id);
         this.projectId = id;
       }

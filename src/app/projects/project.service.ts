@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError, observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Project } from '../Models/project';
@@ -24,9 +24,11 @@ export class ProjectService {
       );
   }
 
-  getProjectsData() {
+  getProjectsData() {    
     return this.http.get(this.projectUrl);
   }
+
+  
 
   getProject(id: number): Observable<Project> {
     if (id === 0) {
@@ -40,11 +42,7 @@ export class ProjectService {
       );
   }
 
-  getTableColumn(id: number)
-  {
-    const url = `${this.projectUrl}/${id}`;
-    return this.http.get(url);
-  }
+  
 
   createProject(project: Project): Observable<Project> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    

@@ -113,7 +113,7 @@ saveProject(): void {
           p.id = id;       
         }
       );
-      console.log(p);
+     
       if (p.id === 0) {
         this.projectService.createProject(p)
           .subscribe(

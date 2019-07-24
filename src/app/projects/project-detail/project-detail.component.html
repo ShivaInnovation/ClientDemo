@@ -1,4 +1,5 @@
 <div class="right_col" style="min-height:700px" role="main">
+  <form [formGroup]='columnForm' (ngSubmit)="saveTableData()">
   <div class="container">
     <div class="row">        
       <div class="col-xs-12">  
@@ -8,43 +9,68 @@
                 <span>{{pageTitle}}</span>                 
               </div>
               <div class="panel-body" >
-                  <div class="form-group col-xs-12" *ngIf="tables.length > 0">
-                      <div class="form-group col-xs-4">
+                  <div class="form-group col-xs-12">                     
+                      <div class="form-group col-xs-12">
                           <table class="table table-hover">
                               <thead>
                                 <tr> 
                                   <th>SNo</th>                        
                                   <th scope="col">Column Name</th>
                                   <th scope="col">Data Type</th>
+                                  <th scope="col">Is Display</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr *ngFor="let column of tables[0]; let i = index">                       
+                                <tr *ngFor="let column of tableColumns; let i = index">                       
                                   <td>{{i+1}}</td>
                                   <td>  
                                       {{column.CoulmnName}}
                                   </td> 
                                   <td>  
                                       {{column.Datatype}}
-                                  </td>    
+                                  </td> 
+                                  <td>  
+                                      {{column.IsDisplay}}
+                                  </td>                         
                                 </tr>   
                               </tbody>
-                          </table>
-                        </div>                          
-                      </div> 
-                    <div class="row mt-4">
-                        <div class="col-md-4">
+                          </table> 
+                      </div>
+                      <div class="form-group col-xs-12" *ngIf = "lookupTableshow">
+                          <table>  
+                              <tr formArrayName="columnDetails" *ngFor="let cd of columnForm.controls.columnDetails.controls ;let i=index;">  
+                                  <td formGroupName={{i}}> 
+                                      <div class="form-group col-xs-14">
+                                          <label>{{cd.get('columnName').value}}</label>
+                                          <input class="form-control"
+                                               id="columnName"
+                                               type="text"
+                                               placeholder="Column"
+                                               formControlName="ColumnData" />                                           
+                                        </div>        
+                                  </td>  
+                              </tr> 
+                          </table> 
+                      </div>
+                    <div class="form-group col-xs-24">
+                        <div class="col-md-8">
                           <button class="btn btn-outline-secondary mr-3"
                                   style="width:80px"
                                   (click)="onBack()">
                             <i class="fa fa-chevron-left"></i> Back
+                          </button> 
+                          <button class="btn btn-primary" *ngIf = "lookupTableshow"
+                                  style="width:80px" type="submit" [disabled]="!columnForm.valid" >
+                             Submit
                           </button>                         
                         </div>
-                    </div>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
   </div>
+  </div>
+</form>
 </div>

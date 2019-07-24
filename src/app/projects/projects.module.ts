@@ -9,6 +9,7 @@ import { ProjectColumnComponent } from './project-column/project-column.componen
 import { ProjectTableComponent } from './project-table/project-table.component';
 import { ProjectConfigComponent } from './project-config/project-config.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ErrorInterceptorProvider } from '../error.interceptor';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,12 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ProjectsRoutingModule,
     ReactiveFormsModule    
   ],
-  declarations: [ProjectAddComponent, ProjectListComponent, ProjectColumnComponent, ProjectTableComponent, ProjectConfigComponent, ProjectDetailComponent]
+  declarations: [ProjectAddComponent, 
+                  ProjectListComponent, 
+                  ProjectColumnComponent, 
+                  ProjectTableComponent, 
+                  ProjectConfigComponent, 
+                  ProjectDetailComponent],
+  providers:[]
 })
 export class ProjectsModule { }

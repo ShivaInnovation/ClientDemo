@@ -44,28 +44,12 @@ export class ProjectTableComponent implements OnInit {
   );
   }
 
-  createItem() {
-    return this._fb.group({
-      columnName: ['Jon']      
-    })
-  }
-
-  changeTable(e) {
-    this.tableName.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }  
-  
-  
-  get tableName() {
-    return this.tableForm.get('tableType');
-  }
-
   addColumn(): void {   
     let cols =  this.tableForm.get('columns') as FormArray; 
     this.columns.push(this._fb.group({
       columnName: '',
       dataType: 'varchar(500)',
+      isDisplay:''
     }));
   }
   
@@ -83,8 +67,10 @@ export class ProjectTableComponent implements OnInit {
         console.log(p);       
           this.tableService.createTable(p)
             .subscribe(
-              () => this.onSaveComplete(),
-               error => this.errorMessage = error              
+              () => {this.onSaveComplete()},
+               (error: any) =>{ this.errorMessage = error.error.Message
+                alert(this.errorMessage);
+               }     
             );           
        } else {
         this.onSaveComplete();
@@ -94,9 +80,7 @@ export class ProjectTableComponent implements OnInit {
     }
   }
   
-  onSaveComplete(): void {
-    // Reset the form to clear the flags
-    //this.productForm.reset();
+  onSaveComplete(): void {    
     alert('Table added successfully');
     this.router.navigate(['/projects-table', this.projectId]);
   }  

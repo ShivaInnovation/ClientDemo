@@ -45,9 +45,19 @@
                                 type="text"
                                 placeholder="Data Type"
                                 formControlName="dataType" />
-                            </div>                           
-                          <button class="col-md-2 btn btn-outline-warning btn-sm"
+                            </div> 
+                            <div class="form-group col-xs-1">
+                                <label>Is Display</label>
+                                <input class="form-control"
+                                id="dataType"
+                                type="checkbox"
+                                placeholder="Data Type"
+                                formControlName="isDisplay"/>
+                            </div>   
+
+                          <button class="col-md-1 btn btn-outline-warning btn-sm"
                                   type="button"
+                                  style="margin-top: 27px"
                                   title="Delete this search tag"
                                   (click)="deleteColumn(i)">Delete
                           </button>
