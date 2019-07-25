@@ -139,8 +139,7 @@ export class ProjectConfigComponent implements OnInit {
   }
 
   onSaveComplete(): void {  
-    alert('Succefully configured project!')  
-    //this.configForm.reset();  
+    alert('Succefully configured project!')    
     this.router.navigate(['/projects']);
   } 
   

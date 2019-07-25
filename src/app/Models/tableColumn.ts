@@ -5,4 +5,5 @@ export class TableColumn {
     CoulmnName: string;
     Datatype: string;
     IsDisplay: string;
+    ProjectID: number
 }

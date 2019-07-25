@@ -7,6 +7,7 @@ import { ProjectColumnComponent } from './project-column/project-column.componen
 import { ProjectTableComponent } from './project-table/project-table.component';
 import { ProjectConfigComponent } from './project-config/project-config.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ProjectLookupTableComponent } from './project-lookup-table/project-lookup-table.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,9 @@ const routes: Routes = [
       {
         path:'projects-table', component: ProjectColumnComponent
       }, 
+      {
+        path:'projects-lookup-table', component: ProjectLookupTableComponent
+      },
       {
         path:'projects-table/:id', component: ProjectColumnComponent
       },  

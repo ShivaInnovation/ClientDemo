@@ -23,8 +23,6 @@ export class ProjectDetailComponent implements OnInit {
   lookupTable: LookUpData[] = []; 
   lookupTableshow: boolean = true
 
-  //allColumnData = [{"$id":"1","ProjectTableName":"Testingff","TableType":"Main Table","ProjectTableID":5,"CoulmnName":"col1","Datatype":"varchar(500)"},{"$id":"2","ProjectTableName":"Testingff","TableType":"Main Table","ProjectTableID":5,"CoulmnName":"col2","Datatype":"varchar(500)"}]
-
   constructor( private _fb: FormBuilder, 
                private router: Router,
                private route: ActivatedRoute,
@@ -44,8 +42,7 @@ export class ProjectDetailComponent implements OnInit {
       this.tableColumns = res;
       this.tableColumns.forEach(e=> {
         if(e.TableType.toUpperCase() == 'Lookup Table'.toUpperCase())
-          this.lookupTableshow = true;
-          console.log(this.lookupTableshow);
+          this.lookupTableshow = true;         
       });     
       this.createform();                    
     });    

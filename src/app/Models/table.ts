@@ -1,7 +1,7 @@
 export class Table {
     id: number;   
     name: string;
-    tableType: string;
+    TableType: string;
     columns?: any[];
     projectId: number;
 }

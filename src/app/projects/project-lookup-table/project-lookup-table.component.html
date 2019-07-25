@@ -1,0 +1,67 @@
+<div class="right_col" style="min-height:700px" role="main">
+ <form [formGroup]='lookUpForm' (ngSubmit)="saveTableData()">
+  <div class="container">
+      <div class="row">        
+        <div class="col-xs-12">  
+            <div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <span>{{pageTitle}}</span>                 
+                </div>
+                <div class="panel-body">  
+                  <div class="form-group col-xs-12">                
+                  <div class="form-group col-xs-4">
+                    <label>Projects</label>
+                    <select class="form-control"  (change)="getTableDetails();" formControlName="projectName"> 
+                        <option value="">--Select--</option>                         
+                        <option *ngFor="let project of _allProjects" [value]="project.id" >{{project.name}}</option>
+                   </select>                
+                  </div>  
+                  <div class="form-group col-xs-4">
+                      <label>LookUp Tables</label>
+                      <select class="form-control" (change)="getTableColumns();" formControlName="projectTableName">   
+                        <option value="">--Select--</option>                        
+                        <option *ngFor="let table of lookupTables" [value]="table.ProjectTableID">  
+                            {{table.ProjectTableName}}  
+                        </option> 
+                   </select>                       
+                  </div>
+                  </div>                   
+                  <div class="form-group col-xs-12" *ngIf = "lookupTableshow">                   
+                        <table class="table table-hover">
+                            <thead>
+                              <tr> 
+                                <th>SNo</th>                        
+                                <th scope="col">Column Name</th>                                  
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody formArrayName="columnDetails" *ngFor="let cd of lookUpForm.controls.columnDetails.controls ;let i=index;">
+                                <tr formGroupName={{i}} >  
+                                     <td>{{i + 1}}</td>
+                                      <td>{{cd.get('columnName').value}}</td>
+                                        <td>
+                                            <input class="form-control"
+                                            id="columnName"
+                                            type="text"
+                                            placeholder="Enter Data"
+                                            formControlName="ColumnData" />   
+                                        </td>
+                                </tr> 
+                            </tbody>
+                        </table>                                 
+                    <div class="margin-20">             
+                        <button type="button" class="btn btn pull-right" [routerLink]="['/projects']">Cancel</button>       
+                      <button  class="btn btn-primary pull-right" style="width:80px" type="submit" [disabled]="!lookUpForm.valid" >
+                         Submit
+                      </button>                         
+                    </div>
+                 </div>
+                </div>                
+              </div>            
+            </div>            
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
