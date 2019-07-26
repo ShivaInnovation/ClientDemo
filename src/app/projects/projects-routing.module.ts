@@ -8,6 +8,8 @@ import { ProjectTableComponent } from './project-table/project-table.component';
 import { ProjectConfigComponent } from './project-config/project-config.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectLookupTableComponent } from './project-lookup-table/project-lookup-table.component';
+import { ProjectClientComponent } from './project-client/project-client.component';
+import { ProjectClientConfigComponent } from './project-client-config/project-client-config.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,12 @@ const routes: Routes = [
       }, 
       {
         path:'projects-lookup-table', component: ProjectLookupTableComponent
+      },
+      {
+        path:'project-client-config', component: ProjectClientConfigComponent
+      },
+      {
+        path:'project-client', component: ProjectClientComponent
       },
       {
         path:'projects-table/:id', component: ProjectColumnComponent

@@ -1,0 +1,66 @@
+<div class="right_col" style="min-height:700px" role="main">
+   <div class="container">
+       <div class="row">        
+         <div class="col-xs-12">  
+             <div>
+               <div class="panel panel-default">
+                 <div class="panel-heading">
+                   <span>{{pageTitle}}</span>                 
+                 </div>
+                 <div class="panel-body">  
+                   <div class="form-group col-xs-12">                
+                   <div class="form-group col-xs-4">
+                     <label>Projects</label>
+                     <select class="form-control" (change)="getProjects($event.target.value)"> 
+                         <option value="0">--Select--</option>                         
+                         <option *ngFor="let project of _allconfigProjects" [value]="project.id" >{{project.name}}</option>
+                    </select>                
+                   </div>
+
+                   <div *ngIf = "configFormshow">   
+                      <form class="form-horizontal" #configAddForm="ngForm" (ngSubmit)="configAddForm.form.valid && onFormSubmit();configAddForm.reset()">
+                          <div class="form-group col-xs-6">
+                              <label>Config Name</label>
+                              <input type="text" class="form-control" name="Config_Name" placeholder="Enter Config Name" [(ngModel)]="submitModel.Config_Name" required > 
+                               
+                          </div>  
+                          <div class="form-group col-xs-2" style="margin-top: 23px"> 
+                              <button type="submit" class="btn btn pull-right" (click)="onCancel()" >Cancel</button>
+                              <button type="submit" class="btn btn-primary pull-right" [disabled]="!configAddForm.valid">Save</button>
+                          </div>
+                      </form>  
+                    </div>
+                     
+                   </div>   
+                   <div class="form-group col-xs-12" *ngIf = "configTableshow">   
+                   <div class="form-group col-xs-8" >                                                               
+                         <table class="table table-hover">
+                             <thead>
+                               <tr> 
+                                 <th>SNo</th>                        
+                                 <th scope="col">Config Name</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                              <tr *ngFor="let project of projectDetails; let i = index"> 
+                                <td>{{i+1}}</td>
+                                <td>  
+                                    {{project.Config_Name}}
+                                </td>                              
+                              </tr>   
+                             </tbody>
+                         </table> 
+                        </div>
+                         <div class="form-group col-xs-2">
+                            <div class="margin-20" style="margin-top: 23px">             
+                                <button type="button" class="btn btn-primary" (click)="showConfigForm()" >Add</button> 
+                            </div> 
+                         </div>  
+                  </div>
+                 </div>                
+               </div>            
+             </div>            
+         </div>
+       </div>
+     </div>
+ </div>

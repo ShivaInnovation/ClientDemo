@@ -1,0 +1,43 @@
+<div class="right_col" style="min-height:700px" role="main">
+    <form [formGroup]='clientForm'>
+     <div class="container">
+         <div class="row">        
+           <div class="col-xs-12">  
+               <div>
+                 <div class="panel panel-default">
+                   <div class="panel-heading">
+                     <span>{{pageTitle}}</span>                 
+                   </div>
+                   <div class="panel-body">
+                     <div class="form-group col-xs-12">                   
+                           <table class="table table-hover">
+                               <thead formArrayName="clientColumn" *ngFor="let cd of clientForm.controls.clientColumn.controls ;let i=index;">
+                                 <tr formGroupName={{i}}> 
+                                   <th scope="col">{{cd.get('columnName').value}}</th>                        
+                                   <!-- <th scope="col">Column Name</th>                                  
+                                   <th scope="col"></th> -->
+                                 </tr>
+                               </thead>
+                               <tbody >
+                                   <tr >  
+                                        <!-- <td>{{i + 1}}</td> -->
+                                         <!-- <td></td> -->
+                                           <!-- <td>
+                                               <input class="form-control"
+                                               id="columnName"
+                                               type="text"
+                                               placeholder="Enter Data"
+                                               formControlName="ColumnData" />   
+                                           </td> -->
+                                   </tr> 
+                               </tbody>
+                           </table> 
+                    </div>
+                   </div>                
+                 </div>            
+               </div>            
+           </div>
+         </div>
+       </div>
+     </form>
+   </div>

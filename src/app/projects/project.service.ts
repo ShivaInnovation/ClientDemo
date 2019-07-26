@@ -4,6 +4,7 @@ import { Observable, of, throwError, observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Project } from '../Models/project';
 import { ConfigModel } from '../Models/config';
+import { ConfigProject } from '../Models/configProject';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class ProjectService {
   formData: Project; 
   private projectUrl = 'http://localhost:50136/api/projects'
   private projectConfigUrl = 'http://localhost:50136/api/ProjectConfigs'
+  private configUrl =  'http://localhost:50136/api/Configs'
   configModel: ConfigModel
 
   constructor(private http: HttpClient) { }
@@ -23,12 +25,6 @@ export class ProjectService {
         catchError(this.handleError)
       );
   }
-
-  getProjectsData() {    
-    return this.http.get(this.projectUrl);
-  }
-
-  
 
   getProject(id: number): Observable<Project> {
     if (id === 0) {
@@ -42,7 +38,29 @@ export class ProjectService {
       );
   }
 
-  
+  getProjectsData() {    
+    return this.http.get(this.projectUrl);
+  }
+
+  getConfigProjectsByUser(userName: string):Observable<ConfigProject[]>{  
+    let params1 = new HttpParams().set('userName', userName);
+    const url = `${this.configUrl}`;
+    return this.http.get<ConfigProject[]>(url, {params: params1});
+  }
+
+  getConfigDetails(id: number):Observable<ConfigProject[]>{
+    const url = `${this.configUrl}/${id}`;
+    return this.http.get<ConfigProject[]>(url);
+  }
+
+  createConfig(configProject: ConfigProject): Observable<ConfigProject> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    
+     return this.http.post<ConfigProject>(this.configUrl, configProject, { headers: headers })
+     .pipe(
+          tap(data => console.log('createProject: ' + JSON.stringify(data))),
+          catchError(this.handleError)
+       );
+  }
 
   createProject(project: Project): Observable<Project> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    

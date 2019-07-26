@@ -36,33 +36,14 @@
                               </tbody>
                           </table> 
                       </div>
-                      <div class="form-group col-xs-12" *ngIf = "lookupTableshow">
-                          <table>  
-                              <tr formArrayName="columnDetails" *ngFor="let cd of columnForm.controls.columnDetails.controls ;let i=index;">  
-                                  <td formGroupName={{i}}> 
-                                      <div class="form-group col-xs-14">
-                                          <label>{{cd.get('columnName').value}}</label>
-                                          <input class="form-control"
-                                               id="columnName"
-                                               type="text"
-                                               placeholder="Column"
-                                               formControlName="ColumnData" />                                                                                      
-                                        </div>        
-                                  </td>  
-                              </tr> 
-                          </table> 
-                      </div>
+                      
                     <div class="form-group col-xs-24">
                         <div class="col-md-8">
                           <button class="btn btn-outline-secondary mr-3"
                                   style="width:80px"
                                   (click)="onBack()">
                             <i class="fa fa-chevron-left"></i> Back
-                          </button> 
-                          <button class="btn btn-primary" *ngIf = "lookupTableshow"
-                                  style="width:80px" type="submit" [disabled]="!columnForm.valid" >
-                             Submit
-                          </button>                         
+                          </button>                                                   
                         </div>
                   </div>
               </div>

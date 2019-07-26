@@ -12,6 +12,8 @@ import { ProjectConfigComponent } from './project-config/project-config.componen
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ErrorInterceptorProvider } from '../error.interceptor';
 import { ProjectLookupTableComponent } from './project-lookup-table/project-lookup-table.component';
+import { ProjectClientComponent } from './project-client/project-client.component';
+import { ProjectClientConfigComponent } from './project-client-config/project-client-config.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,7 +28,7 @@ import { ProjectLookupTableComponent } from './project-lookup-table/project-look
                   ProjectTableComponent, 
                   ProjectConfigComponent, 
                   ProjectDetailComponent, 
-                  ProjectLookupTableComponent],
+                  ProjectLookupTableComponent, ProjectClientComponent, ProjectClientConfigComponent],
   providers:[]
 })
 export class ProjectsModule { }

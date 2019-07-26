@@ -75,9 +75,11 @@ export class ProjectLookupTableComponent implements OnInit {
     for(let i=0;i< this.tableColumns.length; i++) {     
       arr.push(this.BuildFormDynamic(this.tableColumns[i]))     
     }  
+      let projectId = this.lookUpForm.controls['projectName'].value 
+      let tableId = this.lookUpForm.controls['projectTableName'].value 
       this.lookUpForm =  this._fb.group({
-        projectTableName:[''],  
-        projectName:[''],       
+        projectTableName:[tableId],  
+        projectName:[projectId],       
         columnDetails:this._fb.array(arr)  
       })  
     }

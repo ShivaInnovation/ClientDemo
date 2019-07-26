@@ -40,6 +40,7 @@ export class ProjectDetailComponent implements OnInit {
     this.tableService.getTableColumn(this.tableId)
     .subscribe(res => {
       this.tableColumns = res;
+      this.projectId = this.tableColumns[0].ProjectID;
       this.tableColumns.forEach(e=> {
         if(e.TableType.toUpperCase() == 'Lookup Table'.toUpperCase())
           this.lookupTableshow = true;         
@@ -98,6 +99,6 @@ export class ProjectDetailComponent implements OnInit {
 
   
   onBack(): void {
-    this.router.navigate(['/projects-table', this.tableId]);
+    this.router.navigate(['/projects-table', this.projectId]);
   }
 }
